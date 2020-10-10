@@ -1,0 +1,50 @@
+# SAM Template
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  MemorySize:
+    Type: Integer
+    Default: 128
+  FunctionName:
+    Type: String
+    Default: typescript-lambda-function
+
+Resources:
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      # Deploying code from an S3 Bucket for Python/Node Lambdas
+      # Code:
+      # Dead Letter Queue for automatically saving failed Lambda events in an SQS
+      # DeadLetterConfig:
+      Description: Typescript lambda model template
+      # Passing values as enviornment variables to the lambda
+      # Environment:
+      # Connection Settings for an EFS file sysmte
+      # FileSystemConfigs:
+      FunctionName: !Ref FunctionName
+      Handler: ../dist/
+      # The ARN of the KMS Key to encrypt function's environment variables
+      # KmsKeyArn:
+      # A list of function layers to add to the function's execution environment
+      # Layers:
+      MemorySize: !Ref MemorySize
+      # ARN of the function's execution role
+      # Role:
+      Runtime: nodejs12.x
+      Tags:
+        - Key: Application
+          Value: TypescriptLambdaModel
+      Timeout: 30
+      # Enabling X-Ray or X-Ray Sampling on Lambda events
+      # TracingConfig:
+      # VPC Configuration for the lambda
+      # VpcConfig:
+
+Outputs:
+  LambdaId:
+    Description: !Sub Id of the ${FunctionName} lambda
+    Value: !Ref LambdaFunction
+  LambdaArn:
+    Description: !Sub Arn of the ${FunctionName} lambda
+    Value: !GetAtt LambdaFunction.Arn
