@@ -1,0 +1,48 @@
+{
+  "name": "aws-ai-services",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Tests the AWS AI Services",
+  "author": "Ethan T. Painter",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && cp -r ./node_modules ./dist",
+    "clean": "rm -rf ./node_modules && rm -rf ./dist",
+    "ci": "npm run clean && npm i && npm run lint && npm run build && npm run test",
+    "lint": "npm run lint:src && npm run lint:test",
+    "lint:src": "eslint src/**/*.js && eslint src/**/*.tsx",
+    "lint:test": "eslint test/**/*.tsx",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+  },
+  "bugs": {
+    "url": "https://github.com/EthanTPainter/typescript-lambda-model/issues"
+  },
+  "homepage": "https://github.com/EthanTPainter/typescript-lambda-model#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EthanTPainter/typescript-lambda-model.git"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "useTabs": true,
+    "tabWidth": 2,
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "semi": true,
+    "singleQuote": false,
+    "jsxSingleQuote": false,
+    "trailingComma": "es5"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.771.0",
+    "axios": "^0.20.0",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.63",
+    "eslint": "^7.11.0",
+    "mocha": "^8.1.3 ",
+    "prettier": "^2.1.2"
+  }
+}
